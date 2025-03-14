@@ -1,0 +1,18 @@
+
+services:
+  boilerplate-core-db:
+    image: postgres:17.4
+    container_name: boilerplate_core_postgres
+    shm_size: '128mb'   # increased shared memory, beneficial for PostgreSQL
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - boilerplate_core_postgres_data:/var/lib/postgresql/data
+
+
+volumes:
+  boilerplate_core_postgres_data:    # named volume for persisting Postgres data
